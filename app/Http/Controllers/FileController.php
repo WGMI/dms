@@ -65,7 +65,8 @@ class FileController extends Controller
 
         $folder = auth()->user()->id;
         $name = $request->file('file')->getClientOriginalName();
-        $path = $this->UploadFile($request->file('file'), $folder, 'public', $name);//use the method in the trait
+        $path = Storage::putFileAs($folder, $request->file('file'), $name);
+        // $path = $this->UploadFile($request->file('file'), $folder, 'public', $name);//use the method in the trait
         File::create([
             'owner_id' => auth()->user()->id,
             'name' => $name,
@@ -83,8 +84,9 @@ class FileController extends Controller
     public function download($id)
     {
         $file = File::find($id);
+        return Storage::download($file->path);
         //dd(public_path()."\storage\\".$file->path);
-        return response()->download(public_path()."\storage\\".$file->path, $file->name);//Storage::download(public_path()."\storage\\".$file->path);
+        // return response()->download(public_path()."\storage\\".$file->path, $file->name);//Storage::download(public_path()."\storage\\".$file->path);
     }
 
     /**
