@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\FileController;
+use App\Http\Controllers\FolderController;
 
 /*
 |--------------------------------------------------------------------------
@@ -20,6 +21,9 @@ Route::post('files',[FileController::class,'store'])->middleware('optimizeImages
 Route::get('recent',[FileController::class,'recent']);
 Route::get('shared',[FileController::class,'shared']);
 Route::get('files/{id}',[FileController::class,'download']);
+
+Route::get('folder/{id}',[FolderController::class,'show']);
+Route::post('folder',[FolderController::class,'store']);
 
 Auth::routes();
 

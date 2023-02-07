@@ -25,8 +25,9 @@ class FileController extends Controller
 
     public function index()
     {
+        $folders = auth()->user()->folders;
         $files = auth()->user()->files;
-        return view('home',compact('files'));
+        return view('home',compact('files','folders'));
     }
 
     public function recent()

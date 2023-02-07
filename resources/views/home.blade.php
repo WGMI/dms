@@ -6,7 +6,22 @@
             <div id="message" class="alert alert-success" role="alert">{{session('success')}}&nbsp;<a href="#" onclick="document.getElementById('message').innerHTML = '';document.getElementById('message').classList = ''">Close</a></div>
         @endif    
         <div class="container mx-auto mt-6">
-            <div class="row"> 
+            <div class="row">
+                @if($folders) 
+                    @foreach($folders as $folder)
+                    <div class="col-md-2">
+                        <div class="card" style="width: 9rem; margin-bottom: 2rem;">
+                            <img src="{{asset('images/folder.png')}}" class="card-img-top" alt="...">
+                            <div class="card-body">
+                                <h6 class="card-title">{{$folder->name}}</h6>
+                                <p class="card-subtitle mb-2 text-muted">{{Carbon\Carbon::parse($folder->created_at)->format('d M, Y')}}</p>
+                                <!-- <a href="#" class="btn btn-success"><i class="fas fa-link"></i> Details</a> -->
+                                <a href="{{url('folder/'.$folder->id)}}" class="btn btn-success  "><i class="fab fa-github"></i>Open</a>
+                            </div>
+                        </div>
+                    </div>
+                    @endforeach
+                @endif
                 @if($files)               
                     @foreach($files as $file)
                         @php
@@ -23,7 +38,7 @@
                                     <h6 class="card-title">{{$title}}</h6>
                                     <p class="card-subtitle mb-2 text-muted">{{Carbon\Carbon::parse($file->created_at)->format('d M, Y')}}</p>
                                     <!-- <a href="#" class="btn btn-success"><i class="fas fa-link"></i> Details</a> -->
-                                    <a href="{{url('files/'.$file->id)}}" class="btn btn-success  "><i class="fab fa-github"></i> Download</a>
+                                    <a href="{{url('files/'.$file->id)}}" class="btn btn-success  "><i class="fab fa-github"></i>Download</a>
                                 </div>
                             </div>
                         </div>

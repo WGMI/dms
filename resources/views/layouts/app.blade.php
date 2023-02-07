@@ -88,13 +88,40 @@
                             </label>
                             <input name="file" type="file" id="file" onchange="upload()" style="display:none;">
                         </form>
-                        <form id="new-folder" action="{{url('/folder')}}" method="POST">
+                        <!-- <form id="new-folder" action="{{url('/folder')}}" method="POST">
                             @csrf
                             <label for="folder" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                                 <span class="fs-5 d-none d-sm-inline">New Folder</span>
                             </label>
-                            <!-- <input name="file" type="file" id="file" onchange="upload()" style="display:none;"> -->
-                        </form>
+                                <input name="file" type="file" id="file" onchange="upload()" style="display:none;"> 
+                        </form> -->
+
+                        <a class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
+                            <span class="fs-5 d-none d-sm-inline">New Folder</span>
+                        </a>
+
+                        <!-- Modal -->
+                        <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                        <div class="modal-dialog">
+                            <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <form id="folder-form" action="{{url('folder')}}" method="POST">
+                                    @csrf
+                                    <input class="form-control" type="text" name="name" placeholder="Name">
+                                    <input  type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                </form>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary" onclick="document.getElementById('folder-form').submit()">Save</button>
+                            </div>
+                            </div>
+                        </div>
+                        </div>
 
                         <ul class="nav nav-pills flex-column mb-sm-auto mb-0 align-items-center align-items-sm-start" id="menu">
                             <!-- <li class="nav-item">
@@ -184,6 +211,7 @@
         <a href="https://www.flaticon.com/free-icons/txt-file" title="txt file icons">Txt file icons created by FauzIDEA - Flaticon</a>
         <a href="https://www.flaticon.com/free-icons/pdf" title="pdf icons">Pdf icons created by Freepik - Flaticon</a>
         <a href="https://www.flaticon.com/free-icons/csv" title="csv icons">Csv icons created by mpanicon - Flaticon</a>
+        <a href="https://www.flaticon.com/free-icons/folder" title="folder icons">Folder icons created by kmg design - Flaticon</a>
     </div>
     </div>
 
