@@ -11,16 +11,26 @@ class FolderController extends Controller
 {
     public function show($id){
         $folder = Folder::find($id);
-        // $files = File::where('path','like',$folder->path.'%')->get();
-        $files = \File::files($folder->path);
-        return view('home',compact('files'));
+        $path = $folder->path;
+        $files = Storage::files($path);
+        $folders = Storage::directories($path);
+        return view('home',compact('files','folders','path'));
     }
 
     public function store(Request $request){
-        $path = $request->user_id.'/'.$request->name;
+        $request->validate([
+            'name' => ['required','unique:folders']
+        ]);
+        $path = $request->path.'/'.$request->name;
         $request['path'] = $path;
         Folder::create($request->all());
         Storage::makeDirectory($path);
-        return redirect()->back()->with('success', 'Folder Uploaded Successfully');
+        return redirect()->back()->with('success', 'Folder Created Successfully');
+    }
+
+    public function open(Request $request){
+        $files = Storage::files($request->path);
+        $folders = Storage::directories($request->path);
+        return view('home',compact('files','folders'));
     }
 }

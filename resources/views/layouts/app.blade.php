@@ -86,6 +86,7 @@
                             <label for="file" class="d-flex align-items-center pb-3 mb-md-0 me-md-auto text-white text-decoration-none">
                                 <span class="fs-5 d-none d-sm-inline">New FIle</span>
                             </label>
+                            <input type="hidden" name="path" value="{{$path}}">
                             <input name="file" type="file" id="file" onchange="upload()" style="display:none;">
                         </form>
                         <!-- <form id="new-folder" action="{{url('/folder')}}" method="POST">
@@ -113,6 +114,7 @@
                                     @csrf
                                     <input class="form-control" type="text" name="name" placeholder="Name">
                                     <input  type="hidden" name="user_id" value="{{auth()->user()->id}}">
+                                    <input type="hidden" name="path" value="{{$path}}">
                                 </form>
                             </div>
                             <div class="modal-footer">

@@ -25,9 +25,12 @@ class FileController extends Controller
 
     public function index()
     {
-        $folders = auth()->user()->folders;
-        $files = auth()->user()->files;
-        return view('home',compact('files','folders'));
+        /*$folders = auth()->user()->folders;
+        $files = auth()->user()->files;*/
+        $path = auth()->user()->id;
+        $files = Storage::files(auth()->user()->id);
+        $folders = Storage::directories(auth()->user()->id);
+        return view('home',compact('files','folders','path'));
     }
 
     public function recent()
@@ -38,8 +41,7 @@ class FileController extends Controller
 
     public function shared()
     {
-        $files = null;
-        return view('home',compact('files'));
+        return 'Temporarily disabled';
     }
 
     /**
@@ -64,7 +66,7 @@ class FileController extends Controller
             return;
         }
 
-        $folder = auth()->user()->id;
+        $folder = $request->path;
         $name = $request->file('file')->getClientOriginalName();
         $path = Storage::putFileAs($folder, $request->file('file'), $name);
         // $path = $this->UploadFile($request->file('file'), $folder, 'public', $name);//use the method in the trait

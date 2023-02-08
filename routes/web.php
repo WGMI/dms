@@ -24,6 +24,7 @@ Route::get('files/{id}',[FileController::class,'download']);
 
 Route::get('folder/{id}',[FolderController::class,'show']);
 Route::post('folder',[FolderController::class,'store']);
+Route::post('openfolder',[FolderController::class,'open']);
 
 Auth::routes();
 
