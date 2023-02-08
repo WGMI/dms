@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 30, 2023 at 06:58 AM
+-- Generation Time: Feb 08, 2023 at 11:01 AM
 -- Server version: 10.4.19-MariaDB
 -- PHP Version: 7.3.28
 
@@ -57,13 +57,34 @@ CREATE TABLE `files` (
 --
 
 INSERT INTO `files` (`id`, `owner_id`, `name`, `path`, `created_at`, `updated_at`) VALUES
-(16, 1, 'ZTkt4I5.jpg', '1/ZTkt4I5.jpg', '2023-01-26 10:03:46', '2023-01-26 10:03:46'),
-(17, 1, 'Geisha Tanzania Sales090120231673846573.xls', '1/Geisha Tanzania Sales090120231673846573.xls', '2023-01-26 10:04:01', '2023-01-26 10:04:01'),
-(18, 1, 'opendocman-opendocman-1.4.4-release-8-g533d420.zip', '1/opendocman-opendocman-1.4.4-release-8-g533d420.zip', '2023-01-26 10:04:08', '2023-01-26 10:04:08'),
-(19, 1, 'opendocman-opendocman-1.4.4-release-8-g533d420.zip', '1/opendocman-opendocman-1.4.4-release-8-g533d420.zip', '2023-01-27 03:48:48', '2023-01-27 03:48:48'),
-(20, 1, 'A008523675E.pdf', '1/A008523675E.pdf', '2023-01-27 03:48:59', '2023-01-27 03:48:59'),
-(21, 1, 'WhatsApp Image 2023-01-03 at 5.51.09 PM.jpeg', '1/WhatsApp Image 2023-01-03 at 5.51.09 PM.jpeg', '2023-01-27 03:49:09', '2023-01-27 03:49:09'),
-(22, 1, 'booksaw-book-store-html-template.zip', '1/booksaw-book-store-html-template.zip', '2023-01-27 03:49:18', '2023-01-27 03:49:18');
+(1, 1, 'Canon Ethiopia Report1675665596.xls', '1/Canon Ethiopia Report1675665596.xls', '2023-02-07 14:13:17', '2023-02-07 14:13:17'),
+(2, 1, '11311074_Muganda_Imo_17870179_202104140750_Resume.pdf', '1/11311074_Muganda_Imo_17870179_202104140750_Resume.pdf', '2023-02-08 04:44:40', '2023-02-08 04:44:40'),
+(3, 1, 'ZTkt4I5.jpg', '1/ZTkt4I5.jpg', '2023-02-08 06:28:18', '2023-02-08 06:28:18'),
+(5, 1, 'filename.pdf', '1/test/filename.pdf', '2023-02-08 06:33:47', '2023-02-08 06:33:47'),
+(6, 1, 'Royco Consumer Immersion 3101232023-01-31 11_50_35 (1) (1).xlsx', '1/test/inner/Royco Consumer Immersion 3101232023-01-31 11_50_35 (1) (1).xlsx', '2023-02-08 06:59:31', '2023-02-08 06:59:31');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `folders`
+--
+
+CREATE TABLE `folders` (
+  `id` bigint(20) UNSIGNED NOT NULL,
+  `name` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `user_id` bigint(20) UNSIGNED NOT NULL,
+  `path` varchar(255) COLLATE utf8mb4_unicode_ci NOT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
+  `updated_at` timestamp NULL DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+
+--
+-- Dumping data for table `folders`
+--
+
+INSERT INTO `folders` (`id`, `name`, `user_id`, `path`, `created_at`, `updated_at`) VALUES
+(1, 'test', 1, '1/test', '2023-02-07 03:03:58', '2023-02-07 03:03:58'),
+(4, 'inner', 1, '1/test/inner', '2023-02-08 06:55:27', '2023-02-08 06:55:27');
 
 -- --------------------------------------------------------
 
@@ -86,7 +107,8 @@ INSERT INTO `migrations` (`id`, `migration`, `batch`) VALUES
 (2, '2014_10_12_100000_create_password_resets_table', 1),
 (3, '2019_08_19_000000_create_failed_jobs_table', 1),
 (4, '2019_12_14_000001_create_personal_access_tokens_table', 1),
-(5, '2023_01_25_151858_create_files_table', 2);
+(5, '2023_01_25_151858_create_files_table', 1),
+(6, '2023_02_07_052718_create_folders_table', 1);
 
 -- --------------------------------------------------------
 
@@ -140,8 +162,7 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `name`, `email`, `email_verified_at`, `password`, `remember_token`, `created_at`, `updated_at`) VALUES
-(1, 'Will', 'will@hokela.co.ke', NULL, '$2y$10$IuUoUDd/Lgsqx5IjQCD48e3f/92C90K5P9NmwiLDXnHn14oGox/jW', NULL, '2023-01-25 11:55:37', '2023-01-25 11:55:37'),
-(2, 'Test', 't@t.t', NULL, '$2y$10$F9KMz99YMdrGRko46jptNORrkSf7gQX99Vdzt7ITmQnQWUb7R9bLi', NULL, '2023-01-26 02:56:51', '2023-01-26 02:56:51');
+(1, 'Will', 'will@hokela.co.ke', NULL, '$2y$10$sZzUNGd0OsyeoFXN7abw8eiJkKjNhGXb2A7c1EmXluZUGc7NWard6', NULL, '2023-02-07 03:03:52', '2023-02-07 03:03:52');
 
 --
 -- Indexes for dumped tables
@@ -160,6 +181,13 @@ ALTER TABLE `failed_jobs`
 ALTER TABLE `files`
   ADD PRIMARY KEY (`id`),
   ADD KEY `files_owner_id_foreign` (`owner_id`);
+
+--
+-- Indexes for table `folders`
+--
+ALTER TABLE `folders`
+  ADD PRIMARY KEY (`id`),
+  ADD KEY `folders_user_id_foreign` (`user_id`);
 
 --
 -- Indexes for table `migrations`
@@ -202,13 +230,19 @@ ALTER TABLE `failed_jobs`
 -- AUTO_INCREMENT for table `files`
 --
 ALTER TABLE `files`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=23;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+
+--
+-- AUTO_INCREMENT for table `folders`
+--
+ALTER TABLE `folders`
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `migrations`
 --
 ALTER TABLE `migrations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `personal_access_tokens`
@@ -220,7 +254,7 @@ ALTER TABLE `personal_access_tokens`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` bigint(20) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -231,6 +265,12 @@ ALTER TABLE `users`
 --
 ALTER TABLE `files`
   ADD CONSTRAINT `files_owner_id_foreign` FOREIGN KEY (`owner_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
+
+--
+-- Constraints for table `folders`
+--
+ALTER TABLE `folders`
+  ADD CONSTRAINT `folders_user_id_foreign` FOREIGN KEY (`user_id`) REFERENCES `users` (`id`) ON DELETE CASCADE;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
