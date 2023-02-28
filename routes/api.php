@@ -18,20 +18,14 @@ Route::get('temp',function(Request $request){
     $column = $request->item;
     Log::info($column);
     switch($_GET['item']){
-        case 'Bottle':
-            $column = 'Bottle';
+        case 'Freezos10':
+            $column = 'Freezos';
             break;
-        case 'Tshirt':
-            $column = 'Tshirt';
+        case 'Juices10':
+            $column = 'Juices';
             break;
-        case 'Cap':
-            $column = 'Cap';
-            break;
-        case 'Reflector':
-            $column = 'Reflector';
-            break;
-        case 'Umbrella':
-            $column = 'Umbrella';
+        case 'Coffee70':
+            $column = 'Coffee';
             break;
     }
     DB::update('update counter set '.$column.' = '.$column.' + 1');
