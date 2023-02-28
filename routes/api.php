@@ -21,8 +21,8 @@ Route::get('temp',function(Request $request){
         case 'Bottle':
             $column = 'Bottle';
             break;
-        case 'Tshirts':
-            $column = 'Tshirts';
+        case 'Tshirt':
+            $column = 'Tshirt';
             break;
         case 'Cap':
             $column = 'Cap';
