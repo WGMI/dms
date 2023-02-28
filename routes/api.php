@@ -34,7 +34,7 @@ Route::get('temp',function(Request $request){
             $column = 'Umbrella';
             break;
     }
-    DB::update('update bb_counter set '.$column.' = '.$column.' + 1');
+    DB::update('update counter set '.$column.' = '.$column.' + 1');
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
