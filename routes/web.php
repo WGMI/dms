@@ -15,7 +15,9 @@ use App\Http\Controllers\FolderController;
 |
 */
 
-Route::get('/', [FileController::class, 'index'])->name('home');
+Route::get('/', function(){
+    return time();
+});
 Route::get('/home', [FileController::class, 'index'])->name('home');
 Route::post('files',[FileController::class,'store'])->middleware('optimizeImages');
 Route::get('recent',[FileController::class,'recent']);
