@@ -41,6 +41,12 @@
             &nbsp;
             <a href="#" onclick="document.getElementById('error').innerHTML = '';document.getElementById('error').classList = ''">Close</a></div>
         @endif
+        @if (session()->has('error'))
+            <div id="error" class="alert alert-danger" role="alert">
+            {{session('error')}}
+            &nbsp;
+            <a href="#" onclick="document.getElementById('error').innerHTML = '';document.getElementById('error').classList = ''">Close</a></div>
+        @endif
         <div class="container mx-auto mt-6">
             <div class="row">
                 @if($folders)

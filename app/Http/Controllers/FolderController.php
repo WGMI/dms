@@ -19,10 +19,14 @@ class FolderController extends Controller
 
     public function store(Request $request){
         $request->validate([
-            'name' => ['required','unique:folders']
+            'name' => ['required']
         ]);
         $path = $request->path.'/'.$request->name;
         $request['path'] = $path;
+        $duplicate = Folder::where([['name' ,'=', $request->name],['user_id' ,'=', auth()->user()->id],['path' ,'=', $path]])->first();
+        if($duplicate){
+            return redirect()->back()->with('error', 'Folder Name Taken');
+        }
         Folder::create($request->all());
         Storage::makeDirectory($path);
         return redirect()->back()->with('success', 'Folder Created Successfully');
