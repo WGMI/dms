@@ -18,7 +18,7 @@ Route::get('temp',function(Request $request){
     $column = $request->item;
     Log::info($column);
     $count = json_decode(DB::table('counter')->select('counter')->get());
-    return ($count[$request->item]);
+    // return ($count[$request->item]);
     // switch($_GET['item']){
     //     case 'Freezos10':
     //         $column = 'Freezos';
@@ -30,7 +30,7 @@ Route::get('temp',function(Request $request){
     //         $column = 'Coffee';
     //         break;
     // }
-    // DB::update('update counter set '.$column.' = '.$column.' + 1');
+    DB::select("insert into counter value ('"+$request->item + ":1)" + "'");
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
