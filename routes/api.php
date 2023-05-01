@@ -15,22 +15,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('temp',function(Request $request){
-    $column = $request->item;
-    Log::info($column);
-    $count = json_decode(DB::table('counter')->select('counter')->get());
-    // return ($count[$request->item]);
-    // switch($_GET['item']){
-    //     case 'Freezos10':
-    //         $column = 'Freezos';
-    //         break;
-    //     case 'Juices10':
-    //         $column = 'Juices';
-    //         break;
-    //     case 'Coffee70':
-    //         $column = 'Coffee';
-    //         break;
-    // }
-    DB::select("insert into counter value ('"+$request->item + ":1)" + "'");
+    $$item = $request->item;
+    DB::select("UPDATE `counter` SET `count` = (count + 1) WHERE `item` = " + $item);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
