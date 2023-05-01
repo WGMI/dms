@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::get('temp',function(Request $request){
-    $$item = $request->item;
+    $item = $request->item;
     DB::select("UPDATE `counter` SET `count` = (count + 1) WHERE `item` = " + $item);
 });
 
