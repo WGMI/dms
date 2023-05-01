@@ -17,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('temp',function(Request $request){
     $item = $request->item;
     DB::select("UPDATE `counter` SET `count` = (count + 1) WHERE `item` = '".$item."'");
-    return DB::select("SELECT `count` from `counter` WHERE `item` = '".$item."'");
+    return DB::select("SELECT `count` from `counter` WHERE `item` = '".$item."'")[0]->count;
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
