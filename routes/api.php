@@ -33,6 +33,18 @@ Route::get('checkcount',function(Request $request){
     return response()->json(['count' => $count]);
 });
 
+Route::get('reduce',function(Request $request){
+    Log::info($request->all());
+    $gift = $request->gift;
+    $location = $request->location;
+
+    // Run the SQL query using Laravel's query builder
+    $count = DB::table('gifts')
+        ->where('LOCATION', 'like', '%'.$location.'%')
+        ->decrement($gift);
+    return 1;
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
