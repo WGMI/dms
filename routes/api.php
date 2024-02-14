@@ -30,6 +30,10 @@ Route::get('checkcount',function(Request $request){
         ->select($gift)
         ->where('LOCATION', 'like', '%'.$location.'%')
         ->first();
+
+        DB::table('gifts')
+        ->where('LOCATION', 'like', '%'.$location.'%')
+        ->decrement($gift);
     return response()->json(['count' => $count]);
 });
 
