@@ -42,7 +42,12 @@ Route::get('reduce',function(Request $request){
     $count = DB::table('gifts')
         ->where('LOCATION', 'like', '%'.$location.'%')
         ->decrement($gift);
-    return 1;
+
+        $count = DB::table('gifts')
+        ->select($gift)
+        ->where('LOCATION', 'like', '%'.$location.'%')
+        ->first();
+    return response()->json(['count' => $count]);
 });
 
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
