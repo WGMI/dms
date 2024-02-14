@@ -28,7 +28,7 @@ Route::get('checkcount',function(Request $request){
     // Run the SQL query using Laravel's query builder
     $count = DB::table('gifts')
         ->select($gift)
-        ->where('LOCATION', '=', $location)
+        ->where('LOCATION', 'like', '%'.$location.'%')
         ->first();
     return response()->json(['count' => $count]);
 });
