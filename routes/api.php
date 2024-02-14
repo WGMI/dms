@@ -20,6 +20,18 @@ Route::get('temp',function(Request $request){
     return DB::select("SELECT `count` from `counter` WHERE `item` = '".$item."'")[0]->count;
 });
 
+Route::get('checkount',function(Request $request){
+    $gift = $request->gift;
+    $location = $request->location;
+
+    // Run the SQL query using Laravel's query builder
+    $count = DB::table('gifts')
+        ->select($gift)
+        ->where('LOCATION', '=', $location)
+        ->first();
+    return response()->json(['count' => $count]);
+});
+
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
