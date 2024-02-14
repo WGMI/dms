@@ -20,7 +20,7 @@ Route::get('temp',function(Request $request){
     return DB::select("SELECT `count` from `counter` WHERE `item` = '".$item."'")[0]->count;
 });
 
-Route::get('checkount',function(Request $request){
+Route::get('checkcount',function(Request $request){
     $gift = $request->gift;
     $location = $request->location;
 
