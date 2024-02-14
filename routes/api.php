@@ -22,7 +22,6 @@ Route::get('temp',function(Request $request){
 
 Route::get('checkcount',function(Request $request){
     Log::info($request->all());
-    return;
     $gift = $request->gift;
     $location = $request->location;
 
